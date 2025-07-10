@@ -1,5 +1,6 @@
 import '../../../app/services/service_locator.dart';
-import '../interfaces/i_repository.dart';
+
+import '../notifiers/interfaces/i_repository.dart';
 
 /// ThemeRepository implementing repository pattern
 class ThemeRepository implements IThemeRepository {

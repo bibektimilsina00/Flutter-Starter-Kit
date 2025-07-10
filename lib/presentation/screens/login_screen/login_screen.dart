@@ -67,11 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  Consumer<AuthNotifiers>(
+                  Consumer<AuthNotifier>(
                     builder: (context, notifier, _) => CustomButton(
                       text: 'Login',
                       onPressed: _handleLogin,
-                      isLoading: notifier.isLoading,
+                      isLoading: notifier.state.isLoading,
                     ),
                   ),
                   TextButton(
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _handleLogin() {
     if (_formKey.currentState?.validate() ?? false) {
-      context.read<AuthNotifiers>().login(
+      context.read<AuthNotifier>().login(
             _emailController.text,
             _passwordController.text,
           );

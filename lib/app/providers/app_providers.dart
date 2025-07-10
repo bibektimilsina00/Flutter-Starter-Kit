@@ -7,6 +7,6 @@ import '../../core/notifiers/theme/theme_notifiers.dart';
 class AppProvider {
   static List<SingleChildWidget> providers = [
     ChangeNotifierProvider(create: (context) => ThemeNotifier()),
-    ChangeNotifierProvider(create: (context) => AuthNotifiers()),
+    ChangeNotifierProvider(create: (context) => AuthNotifier()),
   ];
 }

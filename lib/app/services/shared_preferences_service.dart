@@ -64,6 +64,11 @@ class SharedPreferencesService {
     return _prefs.containsKey(key);
   }
 
+  // Remove
+  Future<bool> remove(String key) async {
+    return await _prefs.remove(key);
+  }
+
   // Boolean operations
   Future<bool> setBool(String key, bool value) async {
     return await _prefs.setBool(key, value);

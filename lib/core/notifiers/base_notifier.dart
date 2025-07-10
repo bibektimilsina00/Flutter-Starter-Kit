@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vision/app/exceptions/exceptions.dart';
+import 'package:flutter_starter_kit/app/exceptions/app_exception.dart';
 
 import 'base_state.dart';
 import 'interfaces/i_notifier.dart';
@@ -92,7 +92,8 @@ abstract class BaseNotifier<T extends BaseState> extends ChangeNotifier
 
   @override
   void setPartialSuccess() {
-    final newState = state.copyWith(status: Status.partialSuccess, error: '') as T;
+    final newState =
+        state.copyWith(status: Status.partialSuccess, error: '') as T;
     updateState(newState);
   }
 
@@ -117,11 +118,6 @@ abstract class BaseNotifier<T extends BaseState> extends ChangeNotifier
   bool validateBeforeOperation() {
     return true;
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }
 
 /// Enhanced paginated notifier for lists with pagination support
@@ -131,18 +127,18 @@ abstract class PaginatedNotifier<T extends BaseState> extends BaseNotifier<T>
   bool _hasReachedMax = false;
   static const int _defaultPageSize = 20;
 
-  PaginatedNotifier(T initialState) : super(initialState);
+  PaginatedNotifier(super.initialState);
 
   int get currentPage => _currentPage;
   bool get hasReachedMax => _hasReachedMax;
-  
+
   @override
   bool get canLoadMore => !_hasReachedMax && !state.isLoading;
 
   @override
   Future<void> loadMore() async {
     if (!canLoadMore) return;
-    
+
     _currentPage++;
     await handleAsyncOperation(
       () => fetchData(_currentPage, _defaultPageSize),
